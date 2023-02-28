@@ -1,0 +1,35 @@
+<body>
+    <div class="gitna">
+        <input type="text" placeholder="Enter Name" id="name" name="name" [(ngModel)]="newContactName" required><br>
+        <input type="text" placeholder="Enter Phone" id="number" name = "number" [(ngModel)]="newContactNumber" required><br>
+        <button type="button" (click)="addPhoneBook()" class="btn">Add Contact</button>
+    </div>          
+
+    <div class="gitna" *ngIf = "updateContactDetails">
+        <input type="text" name="name" [(ngModel)]="updateContactDetails.name"><br>
+        <input type="text" name ="number" [(ngModel)]="updateContactDetails.number">
+    </div>
+
+    <div>           
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let phonebook of phonebooks; let i=index">
+                    <td>{{phonebook.name}}</td>
+                    <td>{{phonebook.number}}</td>
+                    <td> 
+                        <span><button type="button" [class.selected] = "phonebook === updateContactDetails"
+                            (click)="updatePhoneBook(phonebook)" class="btn1">Edit</button></span>
+                        <span><br><button (click)="deletePhoneBook(i)" class="btn1">Delete</button></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
